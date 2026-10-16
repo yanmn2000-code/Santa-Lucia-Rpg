@@ -59,10 +59,7 @@ footer{border-top:1px solid var(--line);padding:20px;text-align:center;color:#8f
 // A Netlify Function lê as variáveis de ambiente no servidor e disponibiliza apenas a URL e a chave pública.
 window.supabaseReady = (async () => {
   try {
-    const response = await fetch('/.netlify/functions/config');
-    if (!response.ok) throw new Error('Não foi possível ler a configuração do Supabase no Netlify.');
-    const config = await response.json();
-    if (!config.url || !config.key) throw new Error('Configure SUPABASE_URL e SUPABASE_ANON_KEY nas variáveis do Netlify.');
+    const config = { url: 'https://qljgfjicsfgzwvkqwfwz.supabase.co', key: 'sb_publishable_FggdVWfgPX2myh7hiMCb9g_Un_bFf6r' };
     const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
     window.sb = createClient(config.url, config.key);
     return window.sb;
